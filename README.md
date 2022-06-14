@@ -6,4 +6,4 @@ This tool will help you Pre-fill your Notion database or calendar without any th
 
 Try it out 👇
 
-https://autofiller.widgets.so
+https://filler.notionwidgets.site
