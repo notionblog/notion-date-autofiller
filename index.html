@@ -37,11 +37,45 @@
         document.body.appendChild(result);
         cp();
       }
+      function formatDate(data) {
+        const today = new Date(data);
+        const day = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ][today.getDay()];
+        const month = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ][today.getMonth()];
+        return `${day}, ${month} ${today.getDate()}`;
+      }
       function addRow(tableRef, data) {
         let newRow = tableRef.insertRow(-1);
-        let newCell = newRow.insertCell(0);
-        let newText = document.createTextNode(data);
-        newCell.appendChild(newText);
+        let dateCell = newRow.insertCell(0);
+        let dateText = document.createTextNode(data);
+        dateCell.appendChild(dateText);
+        let coverCell = newRow.insertCell(1);
+        let dateCover = document.createTextNode(
+          `https://notionwidgets.site/pagecover.png?title=${encodeURIComponent(
+            formatDate(data.trim())
+          )}&size=35&font=Inter&bg=FFFFFF&color=494949`
+        );
+        coverCell.appendChild(dateCover);
       }
       function cp() {
         const el = document.querySelector("#result");
