@@ -4,8 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Notion date autofiller</title>
-    <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <script>
       function datesRange() {
         const exists = document.querySelector("#result");
@@ -62,6 +66,15 @@
           range.select();
           document.execCommand("copy");
         }
+        togglePopup();
+      }
+      function togglePopup() {
+        const popupListener = document.querySelector("#popupListener");
+        if (popupListener.classList.contains("show")) {
+          popupListener.classList.remove("show");
+        } else {
+          popupListener.classList.add("show");
+        }
       }
     </script>
     <style>
@@ -71,9 +84,14 @@
         box-sizing: border-box;
       }
       body {
+        font-family: "Inter", sans-serif;
         background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg id='visual' viewBox='0 0 900 600' width='900' height='600' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1'%3e%3cpath d='M0 79L13.7 92C27.3 105 54.7 131 82 131C109.3 131 136.7 105 163.8 102C191 99 218 119 245.2 120C272.3 121 299.7 103 327 92C354.3 81 381.7 77 409 80C436.3 83 463.7 93 491 98C518.3 103 545.7 103 573 107C600.3 111 627.7 119 654.8 130C682 141 709 155 736.2 151C763.3 147 790.7 125 818 118C845.3 111 872.7 119 886.3 123L900 127L900 0L886.3 0C872.7 0 845.3 0 818 0C790.7 0 763.3 0 736.2 0C709 0 682 0 654.8 0C627.7 0 600.3 0 573 0C545.7 0 518.3 0 491 0C463.7 0 436.3 0 409 0C381.7 0 354.3 0 327 0C299.7 0 272.3 0 245.2 0C218 0 191 0 163.8 0C136.7 0 109.3 0 82 0C54.7 0 27.3 0 13.7 0L0 0Z' fill='%23dddedf'%3e%3c/path%3e%3cpath d='M0 253L13.7 259C27.3 265 54.7 277 82 262C109.3 247 136.7 205 163.8 205C191 205 218 247 245.2 257C272.3 267 299.7 245 327 256C354.3 267 381.7 311 409 321C436.3 331 463.7 307 491 282C518.3 257 545.7 231 573 231C600.3 231 627.7 257 654.8 281C682 305 709 327 736.2 312C763.3 297 790.7 245 818 242C845.3 239 872.7 285 886.3 308L900 331L900 125L886.3 121C872.7 117 845.3 109 818 116C790.7 123 763.3 145 736.2 149C709 153 682 139 654.8 128C627.7 117 600.3 109 573 105C545.7 101 518.3 101 491 96C463.7 91 436.3 81 409 78C381.7 75 354.3 79 327 90C299.7 101 272.3 119 245.2 118C218 117 191 97 163.8 100C136.7 103 109.3 129 82 129C54.7 129 27.3 103 13.7 90L0 77Z' fill='%23d5d6d7'%3e%3c/path%3e%3cpath d='M0 319L13.7 327C27.3 335 54.7 351 82 345C109.3 339 136.7 311 163.8 315C191 319 218 355 245.2 363C272.3 371 299.7 351 327 355C354.3 359 381.7 387 409 396C436.3 405 463.7 395 491 374C518.3 353 545.7 321 573 312C600.3 303 627.7 317 654.8 341C682 365 709 399 736.2 392C763.3 385 790.7 337 818 327C845.3 317 872.7 345 886.3 359L900 373L900 329L886.3 306C872.7 283 845.3 237 818 240C790.7 243 763.3 295 736.2 310C709 325 682 303 654.8 279C627.7 255 600.3 229 573 229C545.7 229 518.3 255 491 280C463.7 305 436.3 329 409 319C381.7 309 354.3 265 327 254C299.7 243 272.3 265 245.2 255C218 245 191 203 163.8 203C136.7 203 109.3 245 82 260C54.7 275 27.3 263 13.7 257L0 251Z' fill='%23cecfd0'%3e%3c/path%3e%3cpath d='M0 403L13.7 411C27.3 419 54.7 435 82 431C109.3 427 136.7 403 163.8 403C191 403 218 427 245.2 427C272.3 427 299.7 403 327 409C354.3 415 381.7 451 409 465C436.3 479 463.7 471 491 450C518.3 429 545.7 395 573 379C600.3 363 627.7 365 654.8 385C682 405 709 443 736.2 441C763.3 439 790.7 397 818 393C845.3 389 872.7 423 886.3 440L900 457L900 371L886.3 357C872.7 343 845.3 315 818 325C790.7 335 763.3 383 736.2 390C709 397 682 363 654.8 339C627.7 315 600.3 301 573 310C545.7 319 518.3 351 491 372C463.7 393 436.3 403 409 394C381.7 385 354.3 357 327 353C299.7 349 272.3 369 245.2 361C218 353 191 317 163.8 313C136.7 309 109.3 337 82 343C54.7 349 27.3 333 13.7 325L0 317Z' fill='%23c7c8c9'%3e%3c/path%3e%3cpath d='M0 601L13.7 601C27.3 601 54.7 601 82 601C109.3 601 136.7 601 163.8 601C191 601 218 601 245.2 601C272.3 601 299.7 601 327 601C354.3 601 381.7 601 409 601C436.3 601 463.7 601 491 601C518.3 601 545.7 601 573 601C600.3 601 627.7 601 654.8 601C682 601 709 601 736.2 601C763.3 601 790.7 601 818 601C845.3 601 872.7 601 886.3 601L900 601L900 455L886.3 438C872.7 421 845.3 387 818 391C790.7 395 763.3 437 736.2 439C709 441 682 403 654.8 383C627.7 363 600.3 361 573 377C545.7 393 518.3 427 491 448C463.7 469 436.3 477 409 463C381.7 449 354.3 413 327 407C299.7 401 272.3 425 245.2 425C218 425 191 401 163.8 401C136.7 401 109.3 425 82 429C54.7 433 27.3 417 13.7 409L0 401Z' fill='%23c0c1c2'%3e%3c/path%3e%3c/svg%3e");
         background-size: cover;
         background-repeat: no-repeat;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
       }
       .container {
         width: 100%;
@@ -91,7 +109,7 @@
         border: 1px solid rgba(255, 255, 255, 0.37);
         padding: 50px;
         border-radius: 10px;
-        min-width: 400px;
+        min-width: 350px;
       }
       input {
         display: block;
@@ -102,6 +120,10 @@
         border-radius: 6px;
         margin-top: 8px px;
         color: #7c7c7c;
+      }
+      label {
+        margin-bottom: 10px;
+        display: inline-block;
       }
       button {
         width: 100%;
@@ -118,17 +140,57 @@
         opacity: 0.9;
       }
       .inputForm {
-        margin-bottom: 25px;
+        margin-bottom: 15px;
       }
       #result {
         position: absolute;
         left: -99999px;
+      }
+      #popupListener {
+        position: fixed;
+        display: none;
+        top: 0;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        background: #2d2e306b;
+        align-items: center;
+        justify-content: center;
+      }
+      .popup {
+        margin: auto;
+        text-align: center;
+        background: white;
+        border-radius: 6px;
+        padding: 25px;
+        position: relative;
+      }
+      .popup .close {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 40px;
+        height: 40px;
+        color: #2d2e30;
+      }
+      .popup .success {
+        color: #23b550;
+      }
+      .popup button {
+        background: none;
+        border: 2px solid #2d2e30;
+        color: #2d2e30;
+        margin-top: 20px;
+      }
+      .show {
+        display: flex !important;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="autofiller">
+        <h2>Notion Date Autofiller</h2>
         <div class="inputForm">
           <label for="start">Start date:</label>
           <input type="date" id="start" />
@@ -140,6 +202,58 @@
         </div>
 
         <button onclick="datesRange()">Generate</button>
+      </div>
+    </div>
+    <div id="popupListener">
+      <div class="popup">
+        <span onclick="togglePopup()" class="close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            aria-hidden="true"
+            role="img"
+            class="iconify iconify--material-symbols"
+            width="32"
+            height="32"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6Z"
+            ></path>
+          </svg>
+        </span>
+        <svg
+          class="success"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          aria-hidden="true"
+          role="img"
+          width="32"
+          height="32"
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 48 48"
+        >
+          <g
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="4"
+          >
+            <path
+              d="m24 4l5.253 3.832l6.503-.012l1.997 6.188l5.268 3.812L41 24l2.021 6.18l-5.268 3.812l-1.997 6.188l-6.503-.012L24 44l-5.253-3.832l-6.503.012l-1.997-6.188l-5.268-3.812L7 24l-2.021-6.18l5.268-3.812l1.997-6.188l6.503.012L24 4Z"
+            ></path>
+            <path d="m17 24l5 5l10-10"></path>
+          </g>
+        </svg>
+        <h2>Success</h2>
+        <p>
+          Dates are copied to your clipboard<br />
+          now paste them into Your Notion's date attribute.
+        </p>
+        <button>Video Guide</button>
       </div>
     </div>
   </body>
